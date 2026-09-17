@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Elin — personal space and digital twin." />
+  <title>Elin — Personal Space</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <canvas class="liquid-glow" aria-hidden="true"></canvas>
+<main>
+    <header class="hero" id="home">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <div class="monogram"><span>E</span><b></b></div>
+        <h1 class="hero-scramble" data-scramble="Hello, I am Elin.">Hello, I am <span>Elin</span><em>.</em></h1>
+        <p class="hero-greeting">Nice to meet you</p>
+<p class="intro">A first-year student exploring intelligent medical engineering, brain-computer interfaces, and cybersecurity.</p>
+        <div class="hero-actions">
+          <button class="button primary" id="openPortal" type="button">About Me</button>
+        </div>
+        <div class="scroll-cue"><span></span> SCROLL TO EXPLORE</div>
+      </div>
+    </header>
+
+    <section class="section twin-section" id="digital-twin">
+      <div class="container">
+        <div class="twin-tagline" aria-label="Personal tagline">
+          <h2>Curious by nature.<br><span>Building by doing.</span></h2>
+        </div>
+        <div class="section-top">
+          <p class="eyebrow">01 / DIGITAL TWIN</p>
+          <span class="section-line"></span>
+        </div>
+
+        <div class="twin-intro">
+          <div>
+            <p class="system-label">AI CONVERSATION INTERFACE</p>
+            <h2>Ask Elin's<br><span>digital twin.</span></h2>
+          </div>
+          <p>It knows about my identity, interests, current projects, and the directions I care about. Ask it anything, just like an AI assistant.</p>
+        </div>
+
+        <div class="chat-shell">
+          <aside class="chat-sidebar">
+            <div class="sidebar-brand"><span>E</span> ELIN AI</div>
+            <div class="sidebar-copy">
+              <p class="sidebar-label">SYSTEM</p>
+              <strong>Personal Digital Twin</strong>
+              <span>Local knowledge · v1.0</span>
+            </div>
+            <div class="sidebar-topics">
+              <p class="sidebar-label">TOPICS</p>
+              <button data-question="Who are you?">About Elin</button>
+              <button data-question="What are you working on?">Current projects</button>
+              <button data-question="What do you like?">Interests</button>
+              <button data-question="What do you hope to become?">Future</button>
+            </div>
+            <div class="sidebar-footer">PRIVATE INSTANCE<br><span>● READY</span></div>
+          </aside>
+
+          <div class="chat-card">
+            <div class="chat-header">
+              <div class="chat-title">
+                <div class="mini-avatar">E</div>
+                <div><strong>Elin's Digital Twin</strong><p><span class="status-dot"></span> Ready to chat</p></div>
+              </div>
+              <button class="clear-chat" id="clearChat" type="button" aria-label="Clear conversation">↻</button>
+            </div>
+
+            <div class="chat-messages" id="chatMessages" aria-live="polite">
+              <div class="message bot">
+                <div class="message-name">ELIN AI</div>
+                <p>Hello.<br>I am Elin’s digital twin. Ask me anything about Elin’s studies, interests, current projects, or future ideas.</p>
+              </div>
+              <div class="suggestions">
+                <button type="button" data-question="Who are you?">Who are you?</button>
+                <button type="button" data-question="What do you like?">What do you like?</button>
+                <button type="button" data-question="What are you working on?">What are you working on?</button>
+              </div>
+            </div>
+
+            <form class="chat-form" id="chatForm">
+              <label class="sr-only" for="chatInput">Enter your question</label>
+              <input id="chatInput" type="text" maxlength="120" placeholder="Message Elin AI…" autocomplete="off" />
+              <button type="submit" aria-label="发送">↑</button>
+            </form>
+            <p class="chat-note">Elin AI · Local knowledge base · Responses are simulated</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  
+    <section class="section feedback-section" id="feedback">
+      <div class="container">
+        <div class="section-top">
+          <p class="eyebrow">02 / FEEDBACK</p>
+          <span class="section-line"></span>
+        </div>
+
+        <div class="feedback-intro">
+          <div>
+            <p class="system-label">USER FEEDBACK INTERFACE</p>
+            <h2>Tell me what<br><span>you think.</span></h2>
+          </div>
+          <p>Your feedback helps me improve this space, the portal experience, and the digital twin.</p>
+        </div>
+
+        <form class="feedback-shell" id="feedbackForm">
+          <div class="feedback-grid">
+            <label class="feedback-field">
+              <span>昵称 / Nickname <em>不要求真实姓名 / Real name not required</em></span>
+              <input id="feedbackNickname" name="nickname" type="text" maxlength="80" placeholder="请输入昵称 / Enter a nickname" required>
+            </label>
+
+            <label class="feedback-field">
+              <span>与主页主人的关系 / Your relationship to the site owner</span>
+              <select id="feedbackRelationship" name="relationship" required>
+                <option value="" selected disabled>请选择 / Please select</option>
+                <option value="同学 / Classmate">同学 / Classmate</option>
+                <option value="老师 / Teacher">老师 / Teacher</option>
+                <option value="家人 / Family">家人 / Family</option>
+                <option value="朋友 / Friend">朋友 / Friend</option>
+                <option value="其他 / Other">其他 / Other</option>
+              </select>
+            </label>
+
+            <label class="feedback-field">
+              <span>您使用什么设备访问该网站？ / What device did you use to visit this site?</span>
+              <select id="feedbackDevice" name="device" required>
+                <option value="" selected disabled>请选择 / Please select</option>
+                <option value="手机 / Phone">手机 / Phone</option>
+                <option value="平板 / Tablet">平板 / Tablet</option>
+                <option value="笔记本电脑 / Laptop">笔记本电脑 / Laptop</option>
+                <option value="台式电脑 / Desktop">台式电脑 / Desktop</option>
+                <option value="其他 / Other">其他 / Other</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="feedback-field feedback-message-field">
+            <span>反馈内容 / Feedback</span>
+            <textarea id="feedbackMessage" name="message" rows="7" maxlength="1200"
+              placeholder="请描述具体位置、使用体验和遇到的问题。 / Please describe where it happened, how the experience felt, and any problems you encountered."
+              required></textarea>
+          </label>
+
+          <div class="feedback-actions">
+            <button class="button primary" type="submit">
+              提交反馈 / Send feedback
+            </button>
+            <p class="feedback-note">原型版本：反馈暂时保存在当前设备。 / Prototype: feedback is saved locally on this device.</p>
+          </div>
+
+          <div class="feedback-success" id="feedbackSuccess" role="status" aria-live="polite">
+            已收到你的反馈，谢谢！ / Feedback received. Thank you.
+          </div>
+
+          <div class="feedback-error" id="feedbackError" role="alert" aria-live="assertive"></div>
+        </form>
+      </div>
+    </section>
+
+  <footer>
+    <span>© 2026 ELIN</span>
+    <span>BUILT WITH CURIOSITY / VIBE CODING</span>
+  </footer>
+
+
+    <div class="portal-overlay" id="portalOverlay" aria-hidden="true">
+    <button class="about-home-mark" id="aboutHomeMark" type="button" aria-label="Return to home">ELIN.</button>
+      <div class="portal-space" aria-label="About Me portal">
+        <div class="portal-topline">
+          <span>UNKNOWN SPACE</span>
+        </div>
+        <button class="portal-close" id="closePortal" type="button" aria-label="Close portal">×</button>
+        <div class="portal-core">
+          <div class="portal-orbit orbit-one"></div>
+          <div class="portal-orbit orbit-two"></div>
+          <div class="portal-orbit orbit-three"></div>
+          <div class="portal-ring ring-back"></div>
+          <div class="portal-ring ring-front"></div>
+          <div class="portal-center">
+            <span class="portal-center-label">FIND THE</span>
+            <strong>ACCESS POINT</strong>
+            <span class="portal-center-status">SIGNAL SEARCHING</span>
+          </div>
+          <button class="access-point point-a" type="button" data-correct="false" aria-label="Access point one"></button>
+          <button class="access-point point-b" type="button" data-correct="false" aria-label="Access point two"></button>
+          <button class="access-point point-c" type="button" data-correct="true" aria-label="Access point three"></button>
+          <button class="access-point point-d" type="button" data-correct="false" aria-label="Access point four"></button>
+          <button class="access-point point-e" type="button" data-correct="false" aria-label="Access point five"></button>
+        </div>
+        <div class="about-space-layer" id="about-space-layer" aria-live="polite">
+          <section class="section cinematic-about" id="about-cinematic-space" aria-label="About Me cinematic space">
+            <div class="container">
+              <div class="info-grid about-depth-stage">
+          <article class="info-card about-depth-card">
+            <span class="card-number">01</span>
+            <div>
+              <p class="card-label">IDENTITY</p>
+              <h3>Intelligent Medicine Explorer</h3>
+              <p>A first-year student exploring intelligent medical engineering and brain-computer interfaces.</p>
+            </div>
+            <span class="card-arrow">↗</span>
+          </article>
+          <article class="info-card about-depth-card">
+            <span class="card-number">02</span>
+            <div>
+              <p class="card-label">CURRENTLY</p>
+              <h3>Learning by doing</h3>
+              <p>Currently working through Bandit while learning Linux and cybersecurity through practice.</p>
+            </div>
+            <span class="card-arrow">↗</span>
+          </article>
+          <article class="info-card about-depth-card">
+            <span class="card-number">03</span>
+            <div>
+              <p class="card-label">INTERESTS</p>
+              <h3>Movies / Anime / Imagination</h3>
+              <p>I enjoy movies and anime, and I love discovering the imagination behind great stories.</p>
+            </div>
+            <span class="card-arrow">↗</span>
+          </article>
+          <article class="info-card about-depth-card">
+            <span class="card-number">04</span>
+            <div>
+              <p class="card-label">SIGNATURE</p>
+              <h3>Ring on hand</h3>
+              <p>I often wear rings — a small detail that makes me easy to recognize.</p>
+            </div>
+            <span class="card-arrow">↗</span>
+          </article>
+              </div>
+            </div>
+          </section>
+        </div>
+        
+        <div class="portal-bottomline">
+          <span id="portalHint">Locate a stable signal.</span>
+          
+        </div>
+      </div>
+    </div>
+
+  <script src="script.js"></script>
+
+  <div class="mouse-trail-control" aria-label="Mouse trail control">
+    <span>Mouse Trail</span>
+    <button id="mouse-trail-toggle" class="trail-toggle" type="button"
+            role="switch" aria-checked="true">
+      <span class="trail-toggle-knob"></span>
+      <span class="sr-only">Toggle mouse trail</span>
+    </button>
+  </div>
+
+</body>
+</html>

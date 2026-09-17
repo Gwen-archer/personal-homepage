@@ -1,0 +1,1434 @@
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#eaf9ff;--surface:rgba(255,255,255,.42);--surface-2:rgba(255,255,255,.58);
+  --line:rgba(80,145,170,.22);--line-soft:rgba(80,145,170,.12);
+  --text:#163844;--muted:#5f7f89;--muted-2:#7897a0;--accent:#ffffff;
+  --blue:#72c9e2;--teal:#76d7c9;--deep:#2e778b;
+}
+html{scroll-behavior:smooth}
+body{background:linear-gradient(135deg,#eefaff 0%,#e2f8f7 48%,#d5f2ed 100%);color:var(--text);font-family:"EB Garamond",Garamond,"Times New Roman",serif;line-height:1.7;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 0%,rgba(255,255,255,.62),transparent 38%);z-index:-2}
+.noise{position:fixed;inset:0;pointer-events:none;opacity:.035;z-index:50;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E")}
+a{color:inherit}button,input{font:inherit}
+.navbar{position:fixed;z-index:20;top:18px;left:50%;transform:translateX(-50%);width:min(1160px,calc(100% - 36px));height:58px;padding:0 18px 0 22px;display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.46);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 16px 50px rgba(54,119,135,.14)}
+.brand{text-decoration:none;font-size:.9rem;font-weight:700;letter-spacing:.28em}.brand span{color:#64838d}
+.nav-links{display:flex;gap:28px}.nav-links a{text-decoration:none;color:#52737e;font-size:.8rem;font-weight:500;transition:color .2s}.nav-links a:hover{color:#163844}
+.nav-status{display:flex;align-items:center;gap:7px;color:#64838d;font-size:.72rem;letter-spacing:.16em}.nav-status i{width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 12px rgba(77,180,192,.7)}
+
+.hero{min-height:100vh;display:grid;place-items:center;position:relative;padding:130px 22px 70px;overflow:hidden;border-bottom:1px solid var(--line-soft)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(73,145,165,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(73,145,165,.08) 1px,transparent 1px);background-size:80px 80px;mask-image:linear-gradient(to bottom,black,transparent 82%);-webkit-mask-image:linear-gradient(to bottom,black,transparent 82%)}
+.hero-inner{width:min(850px,100%);text-align:center;position:relative;z-index:1}
+.monogram{width:112px;height:112px;margin:0 auto 30px;display:grid;place-items:center;position:relative;border:1px solid rgba(255,255,255,.28);border-radius:34px;background:rgba(255,255,255,.4);backdrop-filter:blur(20px);box-shadow:inset 0 0 40px rgba(255,255,255,.03),0 30px 80px rgba(0,0,0,.45);transform:rotate(-3deg)}
+.monogram span{font-family:"EB Garamond",Garamond,serif;font-size:3.8rem;font-weight:400}.monogram b{position:absolute;width:8px;height:8px;border-radius:50%;background:#fff;right:15px;bottom:15px;box-shadow:0 0 18px #fff}
+.eyebrow,.system-label,.sidebar-label{font-size:.72rem;letter-spacing:.18em;color:#64838d;font-weight:500}.hero h1{margin:14px 0 20px;font-size:clamp(3.2rem,8vw,6.5rem);line-height:1.02;letter-spacing:-.055em;font-weight:500}.hero h1 span{color:#52737e}.hero h1 em{font-style:normal;color:#163844}
+.intro{max-width:690px;margin:auto;color:#5f7f89;font-size:clamp(.95rem,2vw,1.1rem)}
+.hero-actions{display:flex;justify-content:center;gap:10px;margin-top:34px}.button{display:inline-flex;align-items:center;gap:22px;padding:12px 16px 12px 19px;border-radius:12px;text-decoration:none;font-size:.78rem;font-weight:500;transition:.25s}.button span{font-size:1rem}.button.primary{background:linear-gradient(135deg,#ffffff,#dff8f5);color:#173b45}.button.glass{border:1px solid var(--line);background:rgba(255,255,255,.42);backdrop-filter:blur(16px)}.button:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(0,0,0,.35)}
+.scroll-cue{margin-top:90px;color:#6e8d96;font-size:.6rem;letter-spacing:.22em;display:flex;align-items:center;justify-content:center;gap:10px}.scroll-cue span{width:28px;height:1px;background:#555}
+
+.section{padding:120px 22px}.container{width:min(1160px,100%);margin:auto}.section-top{display:flex;align-items:center;gap:18px;margin-bottom:52px}.section-line{height:1px;flex:1;background:var(--line-soft)}
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:55px}.section-title h2,.twin-intro h2{font-size:clamp(2.4rem,6vw,5rem);line-height:1.03;letter-spacing:-.045em;font-weight:500}.section-title h2 span,.twin-intro h2 span{color:#6b8992}.section-title>p,.twin-intro>p{max-width:300px;color:#64838d;font-size:.85rem}
+.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:22px;overflow:hidden}
+.info-card{min-height:260px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;position:relative;background:rgba(255,255,255,.32)}.card-number{font-size:.65rem;color:#6e8d96;letter-spacing:.15em}.card-label{font-size:.58rem;letter-spacing:.2em;color:#6e8d96;margin-bottom:10px}.info-card h3{font-size:1.3rem;font-weight:500;margin-bottom:9px}.info-card p:last-of-type{color:#64838d;font-size:.82rem;max-width:410px}.card-arrow{position:absolute;right:27px;top:27px;color:#6e8d96;font-size:1.1rem}
+
+.twin-section{border-top:1px solid var(--line-soft);background:radial-gradient(circle at 80% 50%,rgba(88,202,202,.18),transparent 36%)}
+.twin-intro{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:55px}.twin-intro h2{margin-top:13px}
+.chat-shell{display:grid;grid-template-columns:235px 1fr;min-height:620px;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:rgba(255,255,255,.3);box-shadow:0 35px 100px rgba(48,119,132,.16);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+.chat-sidebar{padding:22px 18px;display:flex;flex-direction:column;border-right:1px solid var(--line-soft);background:rgba(255,255,255,.24)}
+.sidebar-brand{font-size:.75rem;font-weight:700;letter-spacing:.16em;display:flex;align-items:center;gap:9px}.sidebar-brand span{display:grid;place-items:center;width:25px;height:25px;border:1px solid #555;border-radius:8px;font-family:"EB Garamond",Garamond,serif}
+.sidebar-copy{padding:55px 8px 35px}.sidebar-copy strong{display:block;font-size:.8rem;font-weight:500}.sidebar-copy span{display:block;color:#6e8d96;font-size:.66rem;margin-top:3px}
+.sidebar-label{margin-bottom:10px;font-size:.55rem}.sidebar-topics{display:grid;gap:4px}.sidebar-topics button{padding:9px 10px;text-align:left;border:0;border-radius:8px;background:transparent;color:#64838d;cursor:pointer;font-size:.72rem;transition:.2s}.sidebar-topics button:hover{background:rgba(255,255,255,.52);color:#eee}.sidebar-footer{margin-top:auto;color:#6c8c94;font-size:.55rem;line-height:1.8;letter-spacing:.12em}.sidebar-footer span{color:#5f7f89}
+.chat-card{min-width:0;display:flex;flex-direction:column;background:rgba(255,255,255,.3)}
+.chat-header{height:72px;padding:0 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line-soft);background:rgba(255,255,255,.24)}
+.chat-title{display:flex;align-items:center;gap:12px}.mini-avatar{width:38px;height:38px;display:grid;place-items:center;border:1px solid #444;border-radius:11px;font-family:"EB Garamond",Garamond,serif}.chat-header strong{font-size:.78rem;font-weight:500}.chat-header p{font-size:.62rem;color:#6b8992}.status-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#62bfc4;margin-right:5px}.clear-chat{border:0;background:transparent;color:#6e8d96;font-size:1.1rem;cursor:pointer}.clear-chat:hover{color:#163844}
+.chat-messages{flex:1;min-height:430px;max-height:500px;overflow-y:auto;padding:30px clamp(22px,5vw,70px);scrollbar-width:thin;scrollbar-color:#9ccdd4 transparent}.message{max-width:720px;margin:0 auto 24px;animation:appear .25s ease}.message-name{font-size:.58rem;letter-spacing:.15em;color:#6e8d96;margin-bottom:7px}.message p{font-size:.91rem;line-height:1.75;color:#365761}.message.user{padding-left:18px;border-left:1px solid #555}.message.user .message-name{color:#888}.suggestions{max-width:720px;margin:5px auto 0;display:flex;flex-wrap:wrap;gap:7px}.suggestions button{padding:8px 12px;border:1px solid var(--line);border-radius:9px;color:#888;background:rgba(255,255,255,.3);cursor:pointer;font-size:.68rem}.suggestions button:hover{color:#163844;background:rgba(255,255,255,.62)}
+@keyframes appear{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.typing{display:flex;gap:4px;padding:8px 0}.typing i{width:4px;height:4px;background:#70a9b3;border-radius:50%;animation:blink 1s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}@keyframes blink{0%,100%{opacity:.25}50%{opacity:1}}
+.chat-form{display:grid;grid-template-columns:1fr 40px;gap:10px;margin:0 clamp(18px,4vw,55px);padding:9px 9px 9px 15px;border:1px solid rgba(80,145,160,.24);border-radius:14px;background:rgba(255,255,255,.4);backdrop-filter:blur(18px)}.chat-form input{min-width:0;border:0;outline:0;background:transparent;color:#eee;font-size:.78rem}.chat-form input::placeholder{color:#6e8d96}.chat-form button{border:0;border-radius:9px;background:linear-gradient(135deg,#ffffff,#d8f6f1);color:#204751;font-size:1.1rem;cursor:pointer}.chat-note{text-align:center;color:#78949c;font-size:.54rem;margin:10px 0 16px}
+
+footer{display:flex;justify-content:space-between;padding:25px 22px;border-top:1px solid var(--line-soft);color:#6d8b93;font-size:.58rem;letter-spacing:.14em}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+@media(max-width:800px){.nav-status{display:none}.nav-links{gap:16px}.section{padding:90px 18px}.section-title,.twin-intro{display:block}.section-title>p,.twin-intro>p{margin-top:20px}.chat-shell{grid-template-columns:1fr}.chat-sidebar{display:none}.chat-messages{min-height:420px}}
+@media(max-width:560px){.navbar{top:10px;width:calc(100% - 20px)}.nav-links a{font-size:.7rem}.hero{padding-top:115px}.monogram{width:92px;height:92px}.monogram span{font-size:3rem}.hero h1{font-size:3.25rem}.hero-actions{flex-direction:column;padding:0 18px}.button{justify-content:space-between}.scroll-cue{margin-top:65px}.section-title h2,.twin-intro h2{font-size:2.65rem}.info-grid{grid-template-columns:1fr}.info-card{min-height:225px}.chat-shell{border-radius:18px}.chat-messages{padding:24px 18px}.chat-form{margin:0 14px}.chat-note{font-size:.48rem}footer{flex-direction:column;gap:7px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button,.info-card{transition:none}.message{animation:none}}
+
+
+/* 2.2 Hero hierarchy */
+.hero-greeting {
+  margin: -0.35rem 0 1.25rem;
+  font-family: "EB Garamond", Garamond, Georgia, serif;
+  font-size: clamp(1.15rem, 1.8vw, 1.55rem);
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  opacity: 0.88;
+}
+
+.hero-tagline {
+  margin: 0 0 1rem;
+  font-family: "EB Garamond", Garamond, Georgia, serif;
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  line-height: 1.35;
+  font-weight: 400;
+  letter-spacing: 0.015em;
+  opacity: 0.82;
+}
+
+.hero-motto {
+  max-width: 34rem;
+  margin: 0 0 2rem;
+  font-family: "EB Garamond", Garamond, Georgia, serif;
+  font-size: clamp(0.82rem, 1vw, 0.98rem);
+  line-height: 1.5;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  opacity: 0.58;
+}
+
+@media (max-width: 700px) {
+  .hero-greeting {
+    margin-top: -0.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-tagline {
+    margin-bottom: 0.8rem;
+  }
+
+  .hero-motto {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Final Hero greeting adjustment */
+.hero-greeting {
+  display: block !important;
+  margin: 0.35rem 0 1.45rem !important;
+  font-family: "EB Garamond", Garamond, Georgia, serif !important;
+  font-size: clamp(1.55rem, 2.7vw, 2.25rem) !important;
+  line-height: 1.12 !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  opacity: 0.88 !important;
+}
+
+/* 2.4 Final Hero greeting */
+.hero-inner > .hero-greeting {
+  margin: 0.25rem 0 1.35rem !important;
+  font-family: "EB Garamond", Garamond, Georgia, serif !important;
+  font-size: clamp(1.55rem, 2.8vw, 2.25rem) !important;
+  line-height: 1.12 !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  opacity: 0.88 !important;
+}
+
+/* 2.5 Hero refinement */
+.hero-scramble {
+  min-height: 1.15em;
+}
+
+.hero-inner > .hero-greeting {
+  margin: 0.3rem 0 1.45rem !important;
+  font-family: "EB Garamond", Garamond, Georgia, serif !important;
+  font-size: clamp(1.8rem, 3.2vw, 2.65rem) !important;
+  line-height: 1.1 !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  opacity: 0.9 !important;
+}
+
+/* 2.5.1 Hero greeting — slightly larger */
+.hero-inner > .hero-greeting {
+  font-size: clamp(2.05rem, 3.7vw, 3rem) !important;
+  line-height: 1.08 !important;
+}
+
+
+/* 2.5.8 Compact fixed-width scramble characters */
+.hero-scramble {
+  white-space: nowrap;
+}
+.hero-scramble .scramble-char {
+  display: inline-block;
+  text-align: center;
+  white-space: pre;
+  vertical-align: baseline;
+}
+.hero-scramble .scramble-name { color: #52737e; }
+.hero-scramble .scramble-period { color: #163844; }
+
+
+/* 2.5.8 Scramble stability */
+.hero-scramble .scramble-char {
+  display: inline-block;
+  text-align: center;
+  white-space: pre;
+  vertical-align: baseline;
+}
+
+
+/* 2.6 Liquid Glow Cursor — ambient bloom, long soft trail, outward particles */
+.liquid-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  display: block;
+}
+
+@media (pointer: coarse) {
+  .liquid-glow { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-glow { display: none; }
+}
+
+/* 2.6.1 Liquid Glow refinement */
+.liquid-glow { cursor: default; }
+
+
+/* 2.6.2 — Mouse Trail toggle */
+.mouse-trail-control {
+  position: fixed;
+  right: 22px;
+  bottom: 20px;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px 8px 13px;
+  border: 1px solid rgba(255,255,255,.42);
+  border-radius: 999px;
+  background: rgba(255,255,255,.18);
+  box-shadow: 0 10px 28px rgba(26, 100, 120, .08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: inherit;
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.trail-toggle {
+  position: relative;
+  width: 38px;
+  height: 21px;
+  padding: 0;
+  border: 1px solid rgba(20, 100, 120, .18);
+  border-radius: 999px;
+  background: rgba(255,255,255,.34);
+  cursor: pointer;
+  transition: background .22s ease, border-color .22s ease;
+}
+
+.trail-toggle-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.9);
+  box-shadow: 0 2px 7px rgba(25, 100, 120, .16);
+  transition: transform .22s ease;
+}
+
+.trail-toggle[aria-checked="true"] {
+  background: linear-gradient(135deg, rgba(112,198,222,.52), rgba(62,190,177,.52));
+  border-color: rgba(70,170,185,.32);
+}
+
+.trail-toggle[aria-checked="true"] .trail-toggle-knob {
+  transform: translateX(17px);
+}
+
+.trail-toggle:focus-visible {
+  outline: 2px solid rgba(57, 169, 185, .55);
+  outline-offset: 3px;
+}
+
+.mouse-trail-off .liquid-glow {
+  display: none !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 700px) {
+  .mouse-trail-control {
+    right: 14px;
+    bottom: 14px;
+    transform: scale(.92);
+    transform-origin: bottom right;
+  }
+}
+
+/* 2.8 — About Me Portal */
+#openPortal{border:0;cursor:pointer;font-family:inherit}
+.hero-actions{flex-direction:column;align-items:center;gap:10px}
+.hero-actions .button{min-width:178px;justify-content:space-between}
+
+.portal-overlay{
+  position:fixed;
+  inset:0;
+  z-index:9990;
+  display:grid;
+  place-items:center;
+  background:rgba(8,28,35,.32);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .5s ease, visibility .5s ease;
+}
+.portal-overlay.is-open{opacity:1;visibility:visible;pointer-events:auto}
+.portal-space{
+  position:relative;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 48%,rgba(113,226,214,.18),transparent 17%),
+    radial-gradient(circle at 50% 50%,rgba(112,201,226,.13),transparent 38%),
+    linear-gradient(135deg,#071c25 0%,#0b3039 48%,#0d4b4b 100%);
+  color:#e9ffff;
+}
+.portal-space:before{
+  content:"";position:absolute;inset:0;opacity:.22;pointer-events:none;
+  background-image:linear-gradient(rgba(151,239,235,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(151,239,235,.13) 1px,transparent 1px);
+  background-size:70px 70px;mask-image:radial-gradient(circle at center,#000 0%,transparent 72%);
+}
+.portal-space:after{
+  content:"";position:absolute;inset:-20%;pointer-events:none;
+  background:conic-gradient(from 0deg at 50% 50%,transparent,rgba(120,222,215,.08),transparent 24%,rgba(115,200,226,.08),transparent 52%,rgba(120,222,215,.07),transparent 76%);
+  animation:portalSpin 18s linear infinite;
+}
+.portal-topline,.portal-bottomline{position:absolute;left:30px;right:30px;display:flex;z-index:4;color:rgba(214,250,250,.52);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase}
+.portal-topline{top:25px;justify-content:flex-end}.portal-bottomline{bottom:25px;justify-content:space-between}
+.portal-close{position:absolute;top:20px;right:26px;z-index:8;border:0;background:transparent;color:rgba(235,255,255,.7);font-size:2rem;line-height:1;cursor:pointer}
+.portal-core{position:absolute;left:50%;top:50%;width:min(74vw,720px);aspect-ratio:1;transform:translate(-50%,-50%);z-index:3}
+.portal-ring{position:absolute;inset:13%;border-radius:50%;border:1px solid rgba(178,255,245,.26);box-shadow:0 0 80px rgba(104,218,211,.1),inset 0 0 70px rgba(111,203,226,.07)}
+.ring-back{transform:scale(.82);border-style:dashed;opacity:.5;animation:portalRotate 20s linear infinite reverse}
+.ring-front{transform:scale(1.08);opacity:.7;animation:portalRotate 28s linear infinite}
+.portal-orbit{position:absolute;inset:9%;border-radius:50%;border:1px solid transparent;border-top-color:rgba(178,255,245,.4);border-right-color:rgba(112,201,226,.12);transform:rotate(-18deg);filter:blur(.2px)}
+.orbit-one{animation:portalRotate 11s linear infinite}.orbit-two{inset:18%;transform:rotate(72deg);opacity:.7;animation:portalRotate 16s linear infinite reverse}.orbit-three{inset:28%;transform:rotate(142deg);opacity:.45;animation:portalRotate 9s linear infinite}
+.portal-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:190px;height:190px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:1px solid rgba(198,255,249,.4);background:radial-gradient(circle,rgba(197,255,250,.18),rgba(88,186,196,.06) 45%,transparent 72%);box-shadow:0 0 90px rgba(104,220,211,.2),inset 0 0 50px rgba(180,255,250,.08);backdrop-filter:blur(8px)}
+.portal-center:before{content:"";position:absolute;inset:-9px;border-radius:50%;border:1px solid rgba(173,244,240,.12);animation:portalPulse 2.8s ease-in-out infinite}
+.portal-center-label{font-size:.53rem;letter-spacing:.22em;color:rgba(215,255,251,.55)}
+.portal-center strong{margin-top:8px;font-size:1.05rem;font-weight:500;letter-spacing:.08em}.portal-center-status{margin-top:9px;font-size:.5rem;letter-spacing:.18em;color:rgba(129,230,218,.72)}
+.access-point{position:absolute;width:15px;height:15px;padding:0;border:1px solid rgba(219,255,250,.72);border-radius:50%;background:rgba(148,240,229,.72);box-shadow:0 0 18px rgba(117,229,216,.8),0 0 42px rgba(101,213,223,.3);cursor:pointer;z-index:7;animation:accessPulse 2.1s ease-in-out infinite}
+.access-point:after{content:"";position:absolute;inset:-9px;border:1px solid rgba(167,247,236,.15);border-radius:50%;animation:accessRipple 2.1s ease-out infinite}
+.point-a{left:17%;top:35%;animation-delay:.3s}.point-b{left:71%;top:25%;animation-delay:1s}.point-c{left:82%;top:58%;animation-delay:.1s}.point-d{left:29%;top:77%;animation-delay:1.4s}.point-e{left:8%;top:61%;animation-delay:.7s}
+.access-point:hover{transform:scale(1.35);box-shadow:0 0 24px rgba(225,255,250,.95),0 0 58px rgba(101,213,223,.45)}
+.portal-space.signal-found .point-c{width:20px;height:20px;background:#eaffff;box-shadow:0 0 30px rgba(234,255,255,1),0 0 90px rgba(108,231,218,.75)}
+.portal-space.signal-found .portal-center{box-shadow:0 0 130px rgba(105,230,218,.4),inset 0 0 70px rgba(220,255,252,.15)}
+.portal-space.signal-found .portal-center-status{color:#eaffff}
+.portal-space.wrong-signal .access-point:not(.point-c){animation:wrongFlash .45s ease}
+.portal-space.entering .portal-core{animation:portalEnter 1.15s cubic-bezier(.2,.7,.2,1) forwards}
+.portal-space.entering .portal-center{animation:portalCoreEnter 1.15s cubic-bezier(.2,.7,.2,1) forwards}
+.portal-space.entering{animation:portalFade .9s ease forwards}
+
+@keyframes portalSpin{to{transform:rotate(360deg)}}
+@keyframes portalRotate{to{transform:rotate(360deg)}}
+@keyframes portalPulse{0%,100%{transform:scale(.96);opacity:.45}50%{transform:scale(1.06);opacity:1}}
+@keyframes accessPulse{0%,100%{opacity:.45;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}
+@keyframes accessRipple{0%{transform:scale(.7);opacity:.55}100%{transform:scale(1.8);opacity:0}}
+@keyframes wrongFlash{50%{opacity:.12;transform:scale(.7)}}
+@keyframes portalEnter{to{transform:translate(-50%,-50%) scale(3.4);filter:blur(4px);opacity:0}}
+@keyframes portalCoreEnter{to{transform:translate(-50%,-50%) scale(2.6);opacity:0}}
+@keyframes portalFade{to{background:rgba(220,255,252,.92)}}
+@media(max-width:560px){.hero-actions .button{width:min(100%,250px)}.portal-topline,.portal-bottomline{left:16px;right:16px;font-size:.48rem}.portal-center{width:150px;height:150px}.portal-center strong{font-size:.88rem}.access-point{width:12px;height:12px}}
+@media(prefers-reduced-motion:reduce){.portal-space:after,.portal-ring,.portal-orbit,.portal-center:before,.access-point,.access-point:after{animation:none}}
+
+/* 2.8.1 — Hero entry buttons stacked vertically */
+.hero-actions {
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-actions .button {
+  width: min(100%, 240px);
+  justify-content: space-between;
+}
+
+@media (max-width: 560px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .button {
+    width: 100%;
+  }
+}
+
+/* 2.8.2 — Portal status feedback: larger + upper center */
+.portal-status,
+.portal-hint,
+.portal-message,
+.portal-feedback,
+.portal-instruction,
+#portalStatus,
+#portalHint,
+#portalMessage,
+.access-status,
+.signal-status,
+#signalStatus {
+  position: fixed !important;
+  top: clamp(92px, 13vh, 150px) !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: translateX(-50%) !important;
+  width: min(92vw, 780px) !important;
+  max-width: 780px !important;
+  padding: 0 20px !important;
+  margin: 0 !important;
+  text-align: center !important;
+  z-index: 10001 !important;
+  font-size: clamp(1.2rem, 2.5vw, 1.9rem) !important;
+  line-height: 1.25 !important;
+  font-weight: 500 !important;
+  letter-spacing: .08em !important;
+  text-transform: none !important;
+  pointer-events: none !important;
+  text-shadow: 0 8px 28px rgba(40, 130, 145, .18) !important;
+}
+
+@media (max-width: 560px) {
+.portal-status,
+.portal-hint,
+.portal-message,
+.portal-feedback,
+.portal-instruction,
+#portalStatus,
+#portalHint,
+#portalMessage,
+.access-status,
+.signal-status,
+#signalStatus {
+  top: 78px !important;
+  font-size: 1.05rem !important;
+  letter-spacing: .05em !important;
+  padding: 0 14px !important;
+}
+}
+
+
+
+/* 2.9.3 — Centered card push-through cinematic sequence */
+.cinematic-about{
+  position:relative;
+  perspective:1500px;
+  perspective-origin:50% 48%;
+  overflow:hidden;
+}
+.cinematic-about::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:0;
+  z-index:0;
+  background:
+    radial-gradient(circle at 50% 50%,rgba(110,219,212,.22),transparent 24%),
+    radial-gradient(circle at 50% 55%,rgba(74,170,199,.16),transparent 52%),
+    linear-gradient(135deg,#061923 0%,#0a2934 48%,#0b3c43 100%);
+  transition:opacity .7s ease;
+}
+.cinematic-about.cinematic-active::before{opacity:.97}
+.cinematic-about>.container{position:relative;z-index:1}
+.cinematic-about .section-top,.cinematic-about .section-title{
+  transition:opacity .45s ease,filter .45s ease;
+}
+.cinematic-about.cinematic-active .section-top,
+.cinematic-about.cinematic-active .section-title{
+  opacity:.16;
+  filter:blur(5px);
+}
+.cinematic-about .about-depth-stage{
+  position:relative;
+  min-height:610px;
+  transform-style:preserve-3d;
+}
+.cinematic-about.cinematic-active .about-depth-stage{
+  display:block;
+  background:radial-gradient(circle at 50% 50%,rgba(121,223,214,.045),transparent 52%);
+  border:1px solid rgba(152,235,229,.05);
+  border-radius:24px;
+  cursor:pointer;
+}
+.cinematic-about .about-depth-card{
+  position:relative;
+  transform-style:preserve-3d;
+  will-change:transform,opacity,filter;
+}
+.cinematic-about.cinematic-active .about-depth-card{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:min(540px,78vw);
+  min-height:220px;
+  transform-origin:center center;
+  opacity:0;
+  filter:blur(14px);
+  pointer-events:none;
+}
+.cinematic-about.cinematic-step-1 .about-depth-card:nth-child(1),
+.cinematic-about.cinematic-step-2 .about-depth-card:nth-child(2),
+.cinematic-about.cinematic-step-3 .about-depth-card:nth-child(3),
+.cinematic-about.cinematic-step-4 .about-depth-card:nth-child(4){
+  animation:aboutCardCenterArrive .95s cubic-bezier(.16,.76,.18,1) forwards;
+}
+.cinematic-about.cinematic-step-2 .about-depth-card:nth-child(1),
+.cinematic-about.cinematic-step-3 .about-depth-card:nth-child(2),
+.cinematic-about.cinematic-step-4 .about-depth-card:nth-child(3){
+  animation:aboutCardPushThrough 1.08s cubic-bezier(.22,.72,.18,1) both;
+}
+.cinematic-about.cinematic-step-3 .about-depth-card:nth-child(1),
+.cinematic-about.cinematic-step-4 .about-depth-card:nth-child(1),
+.cinematic-about.cinematic-step-4 .about-depth-card:nth-child(2){
+  opacity:0 !important;
+  pointer-events:none;
+}
+@keyframes aboutCardCenterArrive{
+  from{
+    opacity:0;
+    filter:none;
+    transform:translate3d(-50%,-50%,-1050px) scale(.34);
+  }
+  to{
+    opacity:1;
+    filter:none;
+    transform:translate3d(-50%,-50%,0) scale(1);
+  }
+}
+@keyframes aboutCardPushThrough{
+  from{
+    opacity:1;
+    filter:blur(0);
+    transform:translate3d(-50%,-50%,0) scale(1);
+  }
+  to{
+    opacity:0;
+    filter:blur(0);
+    transform:translate3d(-50%,-50%,1180px) scale(3.15);
+  }
+}
+.cinematic-about.cinematic-finished::before{opacity:0}
+.cinematic-about.cinematic-finished .section-top,
+.cinematic-about.cinematic-finished .section-title{opacity:1;filter:none}
+.cinematic-about.cinematic-finished .about-depth-stage{
+  min-height:0;
+  display:grid;
+  background:none;
+  border:1px solid var(--line-soft);
+  border-radius:22px;
+}
+.cinematic-about.cinematic-finished .about-depth-card{
+  position:relative;
+  left:auto;
+  top:auto;
+  width:auto;
+  min-height:260px;
+  opacity:1;
+  filter:none;
+  transform:none;
+  pointer-events:auto;
+}
+@media(max-width:800px){
+  .cinematic-about.cinematic-active .about-depth-stage{min-height:660px}
+  .cinematic-about.cinematic-active .about-depth-card{width:min(88vw,540px)}
+}
+@media(max-width:560px){
+  .cinematic-about.cinematic-active .about-depth-stage{min-height:700px}
+  .cinematic-about.cinematic-active .about-depth-card{width:calc(100% - 24px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .cinematic-about::before{display:none}
+  .cinematic-about.cinematic-active .about-depth-card{
+    animation:none!important;
+    opacity:1;
+    filter:none;
+    transform:translate3d(-50%,-50%,0) scale(1)!important;
+  }
+}
+
+/* 2.9.4 — smoother push-through rendering */
+.cinematic-about.cinematic-active .about-depth-stage,
+.cinematic-about.cinematic-active .about-depth-card {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.cinematic-about.cinematic-active .about-depth-card {
+  contain: paint;
+}
+
+/* 2.9.5 — continuous push-through: one uninterrupted transform */
+.cinematic-about.cinematic-active .about-depth-card {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+
+/* 2.9.6 — smooth card handoff */
+.cinematic-about.cinematic-active .about-depth-card {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+  filter: none !important;
+}
+
+/* 2.9.7 — Unknown Space remains the same full-screen interface during About */
+html.unknown-space-open,
+html.unknown-space-open body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+  touch-action: none;
+}
+
+body.unknown-space-open {
+  position: fixed;
+  inset: 0;
+}
+
+#portalOverlay.is-open {
+  overflow: hidden !important;
+}
+
+#portalOverlay.is-open .portal-space {
+  width: 100vw !important;
+  height: 100dvh !important;
+  min-height: 100vh !important;
+  overflow: hidden !important;
+}
+
+/* About content is rendered inside the existing Unknown Space overlay. */
+#portalOverlay .about-space-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(113,226,214,.18), transparent 23%),
+    radial-gradient(circle at 50% 55%, rgba(112,201,226,.12), transparent 50%),
+    linear-gradient(135deg, #061923 0%, #0a2934 48%, #0b3c43 100%);
+  transition: opacity .45s ease, visibility .45s ease;
+}
+
+#portalOverlay.about-in-space .about-space-layer {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+#portalOverlay.about-in-space .portal-topline,
+#portalOverlay.about-in-space .portal-bottomline,
+#portalOverlay.about-in-space .portal-close,
+#portalOverlay.about-in-space .portal-core {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .4s ease;
+}
+
+#about.cinematic-about {
+  /* Normal-page layout until the section is explicitly mounted in Unknown Space. */
+  position: relative;
+  perspective: 1500px;
+}
+
+#portalOverlay.about-in-space #about.cinematic-about {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100dvh !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: transparent !important;
+  display: block !important;
+  perspective: 1500px;
+}
+
+#portalOverlay.about-in-space #about.cinematic-about::before {
+  opacity: 0 !important;
+}
+
+#portalOverlay.about-in-space #about.cinematic-about > .container {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#portalOverlay.about-in-space #about.cinematic-about .section-top,
+#portalOverlay.about-in-space #about.cinematic-about .section-title {
+  display: none !important;
+}
+
+#portalOverlay.about-in-space #about.cinematic-about .about-depth-stage {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100dvh !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  overflow: hidden !important;
+}
+
+#portalOverlay.about-in-space #about.cinematic-about .about-depth-card {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  width: min(540px, 78vw) !important;
+  min-height: 220px;
+}
+
+#about-placeholder {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  #portalOverlay.about-in-space #about.cinematic-about .about-depth-card {
+    width: min(88vw, 540px) !important;
+  }
+}
+
+@media (max-width: 560px) {
+  #portalOverlay.about-in-space #about.cinematic-about .about-depth-card {
+    width: calc(100% - 24px) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #portalOverlay .about-space-layer {
+    transition: none;
+  }
+}
+
+/* 2.9.7.1 — no background-color flash during Portal -> About handoff */
+#portalOverlay .portal-space.entering {
+  animation: none !important;
+  background:
+    radial-gradient(circle at 50% 48%,rgba(113,226,214,.18),transparent 17%),
+    radial-gradient(circle at 50% 50%,rgba(112,201,226,.13),transparent 38%),
+    linear-gradient(135deg,#071c25 0%,#0b3039 48%,#0d4b4b 100%) !important;
+}
+
+#portalOverlay.about-in-space {
+  background: transparent;
+}
+
+#portalOverlay.about-in-space .about-space-layer {
+  background:
+    radial-gradient(circle at 50% 48%,rgba(113,226,214,.18),transparent 17%),
+    radial-gradient(circle at 50% 50%,rgba(112,201,226,.13),transparent 38%),
+    linear-gradient(135deg,#071c25 0%,#0b3039 48%,#0d4b4b 100%);
+}
+
+/* 2.9.7.2 — seamless Portal -> About handoff */
+#portalOverlay.about-in-space {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition: none !important;
+}
+
+#portalOverlay.about-in-space .about-space-layer {
+  transition: opacity .35s ease, visibility .35s ease;
+}
+
+/* 2.9.8 — ELIN. return mark replaces the Portal close X */
+#portalOverlay .portal-close {
+  display: none !important;
+}
+
+#portalOverlay .about-home-mark {
+  position: absolute;
+  top: 22px;
+  left: 26px;
+  z-index: 12;
+  display: none;
+  border: 0;
+  padding: 4px 0;
+  background: transparent;
+  color: rgba(235,255,255,.82);
+  font-family: "EB Garamond", Garamond, Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-shadow: 0 6px 24px rgba(40,130,145,.18);
+  transition: opacity .2s ease, transform .2s ease, color .2s ease;
+}
+
+#portalOverlay .about-home-mark:hover {
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+#portalOverlay.is-open .about-home-mark {
+  display: block;
+}
+
+@media (max-width: 560px) {
+  #portalOverlay .about-home-mark {
+    top: 16px;
+    left: 18px;
+    font-size: .95rem;
+  }
+}
+
+/* 2.9.9.1 — final card exits directly; never reveal the normal About grid */
+.cinematic-about.cinematic-final-exit .about-depth-stage {
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100dvh !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  overflow: hidden !important;
+}
+
+.cinematic-about.cinematic-final-exit .about-depth-card {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  width: min(540px, 78vw) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.cinematic-about.cinematic-final-exit .about-depth-card:nth-child(4) {
+  opacity: 1 !important;
+  animation: aboutCardPushThrough 1.08s cubic-bezier(.22,.72,.18,1) both !important;
+}
+
+.cinematic-about.cinematic-final-exit .about-depth-card:nth-child(1),
+.cinematic-about.cinematic-final-exit .about-depth-card:nth-child(2),
+.cinematic-about.cinematic-final-exit .about-depth-card:nth-child(3) {
+  opacity: 0 !important;
+}
+
+/* 2.9.9.6 — Larger horizontal About cards, 3:2 ratio, white text */
+.about-depth-card {
+  aspect-ratio: 3 / 2 !important;
+  width: min(720px, 82vw) !important;
+  min-height: 0 !important;
+  padding: 34px !important;
+  color: #fff !important;
+}
+
+.about-depth-card *,
+.about-depth-card h3,
+.about-depth-card p,
+.about-depth-card .card-label,
+.about-depth-card .card-number,
+.about-depth-card .card-arrow {
+  color: #fff !important;
+}
+
+.about-depth-card .card-number {
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  letter-spacing: .08em !important;
+}
+
+.about-depth-card .card-label {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: .12em !important;
+}
+
+.about-depth-card h3 {
+  font-size: clamp(1.8rem, 3.4vw, 2.65rem) !important;
+  line-height: 1.08 !important;
+  margin: .55rem 0 .8rem !important;
+}
+
+.about-depth-card p {
+  font-size: clamp(1.15rem, 2vw, 1.45rem) !important;
+  line-height: 1.45 !important;
+}
+
+.about-depth-card .card-arrow {
+  font-size: 1.4rem !important;
+}
+
+#portalOverlay.about-in-space #about.cinematic-about .about-depth-card {
+  width: min(720px, 82vw) !important;
+  aspect-ratio: 3 / 2 !important;
+  min-height: 0 !important;
+}
+
+@media (max-width: 800px) {
+  .about-depth-card,
+  #portalOverlay.about-in-space #about.cinematic-about .about-depth-card {
+    width: min(88vw, 640px) !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .about-depth-card,
+  #portalOverlay.about-in-space #about.cinematic-about .about-depth-card {
+    width: calc(100% - 32px) !important;
+    aspect-ratio: 3 / 2 !important;
+    padding: 24px !important;
+  }
+
+  .about-depth-card h3 {
+    font-size: clamp(1.55rem, 7vw, 2rem) !important;
+  }
+
+  .about-depth-card p {
+    font-size: clamp(1rem, 4.5vw, 1.2rem) !important;
+  }
+}
+
+/* 2.9.9.7 — Slightly smaller About cards, 2:1 horizontal ratio */
+.about-depth-card {
+  aspect-ratio: 2 / 1 !important;
+  width: min(680px, 78vw) !important;
+  min-height: 0 !important;
+  padding: 30px !important;
+}
+
+#portalOverlay.about-in-space #about.cinematic-about .about-depth-card {
+  width: min(680px, 78vw) !important;
+  aspect-ratio: 2 / 1 !important;
+  min-height: 0 !important;
+}
+
+@media (max-width: 800px) {
+  .about-depth-card,
+  #portalOverlay.about-in-space #about.cinematic-about .about-depth-card {
+    width: min(84vw, 600px) !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .about-depth-card,
+  #portalOverlay.about-in-space #about.cinematic-about .about-depth-card {
+    width: calc(100% - 28px) !important;
+    aspect-ratio: 2 / 1 !important;
+    padding: 22px !important;
+  }
+}
+
+/* 3.0 — Feedback module */
+.feedback-section {
+  padding-bottom: 110px;
+}
+
+.feedback-intro {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 34px;
+}
+
+.feedback-intro h2 {
+  margin: .35rem 0 0;
+  font-size: clamp(2.8rem, 6vw, 5.6rem);
+  line-height: .92;
+  letter-spacing: -.035em;
+}
+
+.feedback-intro h2 span {
+  opacity: .45;
+}
+
+.feedback-intro > p {
+  max-width: 520px;
+  justify-self: end;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.feedback-shell {
+  position: relative;
+  display: grid;
+  gap: 22px;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: linear-gradient(145deg, rgba(255,255,255,.20), rgba(255,255,255,.08));
+  box-shadow: 0 24px 80px rgba(22, 87, 103, .08);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.feedback-grid,
+.feedback-meta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.feedback-field {
+  display: grid;
+  gap: 9px;
+}
+
+.feedback-field > span {
+  color: var(--text);
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.feedback-field > span em {
+  color: var(--muted-2);
+  font-size: .68rem;
+  font-style: normal;
+  letter-spacing: .05em;
+  text-transform: none;
+}
+
+.feedback-field input,
+.feedback-field select,
+.feedback-field textarea {
+  width: 100%;
+  border: 1px solid rgba(88, 159, 177, .20);
+  border-radius: 16px;
+  background: rgba(255,255,255,.28);
+  color: var(--text);
+  font: inherit;
+  padding: 14px 16px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.feedback-field select {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position:
+    calc(100% - 19px) 50%,
+    calc(100% - 14px) 50%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+.feedback-field textarea {
+  resize: vertical;
+  min-height: 150px;
+  line-height: 1.6;
+}
+
+.feedback-field input::placeholder,
+.feedback-field textarea::placeholder {
+  color: var(--muted-2);
+}
+
+.feedback-field input:focus,
+.feedback-field select:focus,
+.feedback-field textarea:focus {
+  border-color: rgba(85, 187, 198, .48);
+  background: rgba(255,255,255,.34);
+  box-shadow: 0 0 0 4px rgba(97, 196, 199, .08);
+}
+
+.feedback-rating {
+  display: flex;
+  gap: 10px;
+}
+
+.rating-button {
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(88,159,177,.20);
+  border-radius: 14px;
+  background: rgba(255,255,255,.24);
+  color: var(--text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+}
+
+.rating-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(85,187,198,.42);
+}
+
+.rating-button.is-selected {
+  background: rgba(33,119,135,.16);
+  border-color: rgba(65,175,181,.52);
+  color: #0b5968;
+  box-shadow: 0 8px 22px rgba(48,148,156,.12);
+}
+
+.feedback-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.feedback-note {
+  margin: 0;
+  color: var(--muted-2);
+  font-size: .82rem;
+}
+
+.feedback-success {
+  display: none;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(73, 177, 173, .28);
+  background: rgba(103, 209, 195, .10);
+  color: #155761;
+  font-size: .92rem;
+}
+
+.feedback-success.is-visible {
+  display: block;
+}
+
+.feedback-error {
+  display: none;
+  margin-top: 12px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(199, 84, 84, .30);
+  background: rgba(226, 122, 122, .10);
+  color: #9c2f2f;
+  font-size: .92rem;
+}
+
+.feedback-error.is-visible {
+  display: block;
+}
+
+.feedback-shell button[type="submit"][disabled] {
+  opacity: .55;
+  cursor: progress;
+  transform: none;
+}
+
+/* Portal-contained cinematic About: no main-page About section is needed anymore. */
+#portalOverlay #about-cinematic-space {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+  display: block;
+  perspective: 1500px;
+}
+
+#portalOverlay #about-cinematic-space > .container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#portalOverlay #about-cinematic-space .about-depth-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+#portalOverlay #about-cinematic-space .about-depth-card {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  width: min(680px, 78vw) !important;
+  aspect-ratio: 2 / 1 !important;
+  min-height: 0 !important;
+}
+
+#portalOverlay #about-cinematic-space .section-top,
+#portalOverlay #about-cinematic-space .section-title {
+  display: none !important;
+}
+
+@media (max-width: 820px) {
+  .feedback-intro {
+    grid-template-columns: 1fr;
+  }
+
+  .feedback-intro > p {
+    justify-self: start;
+  }
+
+  .feedback-grid,
+  .feedback-meta-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .feedback-shell {
+    padding: 22px;
+  }
+
+  .feedback-actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .feedback-actions .button {
+    width: 100%;
+  }
+
+  .feedback-rating {
+    gap: 7px;
+  }
+
+  .rating-button {
+    width: 44px;
+    height: 44px;
+  }
+
+  #portalOverlay #about-cinematic-space .about-depth-card {
+    width: calc(100% - 28px) !important;
+  }
+}
+
+/* 3.0.1 — Mouse Trail remains visible inside Unknown Space */
+.liquid-glow {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 12000 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  pointer-events: none !important;
+}
+
+#portalOverlay,
+#portalOverlay .portal-space,
+#portalOverlay .about-space-layer {
+  pointer-events: auto;
+}
+
+#portalOverlay .about-space-layer .about-depth-stage,
+#portalOverlay .about-space-layer .about-depth-card {
+  pointer-events: auto;
+}
+
+html.unknown-space-open:not(.mouse-trail-off) .liquid-glow {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+
+/* 3.0.7 — Final-card return: restore the soft handoff to Hero without the white flash. */
+#portalOverlay.returning-home {
+  visibility: visible !important;
+  pointer-events: none !important;
+  transition: opacity .42s cubic-bezier(.22,.61,.36,1) !important;
+}
+#portalOverlay.is-open.returning-home {
+  opacity: 0 !important;
+}
+#portalOverlay.returning-home .portal-space {
+  animation: none !important;
+}
+
+/* 3.0.2 — Responsive refinement for smaller phones and tablets. */
+@media (max-width: 900px) {
+  .hero {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .hero-inner {
+    max-width: 760px;
+  }
+  .intro {
+    max-width: 610px;
+  }
+  .section {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    min-height: 100svh;
+    padding-top: 90px;
+    padding-bottom: 54px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.35rem, 11.5vw, 3.25rem);
+    letter-spacing: -.045em;
+  }
+
+  .hero-inner > .hero-greeting {
+    font-size: clamp(1.8rem, 8.2vw, 2.5rem) !important;
+  }
+
+  .intro {
+    font-size: .93rem;
+    padding-inline: 8px;
+  }
+
+  .scroll-cue {
+    margin-top: 52px;
+    letter-spacing: .16em;
+  }
+
+  .twin-intro h2,
+  .feedback-intro h2 {
+    font-size: clamp(2.35rem, 11vw, 3.2rem);
+  }
+
+  .chat-header {
+    padding-inline: 16px;
+  }
+
+  .chat-messages {
+    min-height: 360px;
+    max-height: 58vh;
+    padding-inline: 16px;
+  }
+
+  #portalOverlay #about-cinematic-space .about-depth-card {
+    width: calc(100% - 28px) !important;
+    padding: 20px !important;
+  }
+
+  .about-depth-card h3 {
+    font-size: clamp(1.45rem, 7vw, 1.95rem) !important;
+  }
+
+  .about-depth-card p {
+    font-size: clamp(.96rem, 4.2vw, 1.12rem) !important;
+  }
+}
+
+
+/* 3.0.4 — Hero button cleanup */
+.hero-actions #openPortal {
+  justify-content: center;
+  gap: 0;
+}
+
+/* 3.0.7 — Larger About Me label */
+.hero-actions #openPortal {
+  font-size: 1rem;
+  padding: 14px 22px;
+  min-width: 196px;
+}
+
+@media (max-width: 560px) {
+  .hero-actions #openPortal {
+    font-size: .95rem;
+    min-width: 190px;
+    padding: 13px 20px;
+  }
+}
+
+
+/* 3.0.8 — Large personal tagline above Digital Twin */
+.twin-tagline {
+  margin-bottom: 52px;
+}
+
+.twin-tagline h2 {
+  margin: 0;
+  font-size: clamp(2.65rem, 6.2vw, 5.2rem);
+  line-height: 1.03;
+  letter-spacing: -0.045em;
+  font-weight: 500;
+}
+
+.twin-tagline h2 span {
+  color: #6b8992;
+}
+
+@media (max-width: 800px) {
+  .twin-tagline {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 560px) {
+  .twin-tagline {
+    margin-bottom: 34px;
+  }
+
+  .twin-tagline h2 {
+    font-size: clamp(2.45rem, 11vw, 3.55rem);
+    letter-spacing: -0.04em;
+  }
+}
+
+
+/* 3.0.9 — Bilingual feedback labels */
+.feedback-field > span {
+  line-height: 1.5;
+  letter-spacing: .04em;
+  text-transform: none;
+}
+.feedback-field > span em {
+  display: block;
+  margin-top: 2px;
+  line-height: 1.35;
+}
