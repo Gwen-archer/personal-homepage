@@ -1432,3 +1432,687 @@ html.unknown-space-open:not(.mouse-trail-off) .liquid-glow {
   margin-top: 2px;
   line-height: 1.35;
 }
+
+
+/* =========================================================
+   4.0.0 — Digital Twin · dark "AI core" panel + 3D brain bg
+   3D model: “Bioelectric consciousness engine” by VoXelo
+   https://codepen.io/VoXelo/pen/xbgpJre  (used with attribution)
+   ========================================================= */
+
+/* The chat card becomes a dark holographic panel so the neon
+   brain can actually glow (additive glow is invisible on light). */
+.chat-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 80% 4%, rgba(0, 240, 255, .10), transparent 56%),
+    radial-gradient(140% 120% at 12% 108%, rgba(46, 119, 139, .42), transparent 60%),
+    linear-gradient(160deg, #08202a 0%, #061620 46%, #040f16 100%);
+}
+
+/* Canvas layer: sits behind every piece of chat UI, never eats clicks. */
+.brain-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #04111a;
+}
+
+.brain-bg canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Soft cyan bloom in the corner + cinematic vignette to keep text readable. */
+.brain-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(115% 80% at 74% 2%, rgba(0, 240, 255, .12), transparent 58%),
+    radial-gradient(135% 135% at 50% 50%, transparent 32%, rgba(2, 9, 13, .82) 100%);
+}
+
+/* Keep all real content above the canvas. */
+.chat-card > *:not(.brain-bg) {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Chat header ---- */
+.chat-card .chat-header { background: rgba(3, 14, 20, .42); border-bottom-color: rgba(120, 220, 235, .16); }
+.chat-card .chat-header strong { color: #eaf7fb; }
+.chat-card .chat-header p { color: #8fb6c0; }
+.chat-card .mini-avatar { border-color: rgba(140, 225, 240, .5); color: #d8f6fb; background: rgba(0, 240, 255, .08); }
+.chat-card .clear-chat { color: #8fb6c0; }
+.chat-card .clear-chat:hover { color: #eaf7fb; }
+
+/* ---- Messages ---- */
+.chat-card .chat-messages { color: #dbeef3; scrollbar-color: rgba(140, 225, 240, .5) transparent; }
+.chat-card .message-name { color: #7fa7b2; }
+.chat-card .message p { color: #dbeef3; }
+.chat-card .message.user { border-left-color: rgba(120, 220, 235, .45); }
+.chat-card .message.user .message-name { color: #9fc4cd; }
+.chat-card .typing i { background: #7fd6e4; }
+.chat-card .suggestions button { border-color: rgba(120, 220, 235, .3); color: #bfe3ea; background: rgba(0, 240, 255, .06); }
+.chat-card .suggestions button:hover { color: #eaf7fb; background: rgba(0, 240, 255, .16); }
+
+/* ---- Composer ---- */
+.chat-card .chat-form { border-color: rgba(120, 220, 235, .28); background: rgba(3, 13, 18, .62); }
+.chat-card .chat-form input { color: #eaf7fb; }
+.chat-card .chat-form input::placeholder { color: #7fa7b2; }
+.chat-card .chat-form button { background: linear-gradient(135deg, #a6f1ff, #38c9e8); color: #04212b; }
+.chat-card .chat-note { color: #7fa7b2; }
+
+/* ---- Attribution line under the chat shell ---- */
+.twin-credit {
+  margin: 20px 4px 0;
+  font-size: .6rem;
+  line-height: 1.65;
+  letter-spacing: .04em;
+  color: #6f929b;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+
+.twin-credit a {
+  color: #3f93a8;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color .2s ease;
+}
+
+.twin-credit a:hover { color: #163844; }
+.twin-credit-note { opacity: .85; }
+
+/* ---- Drag-to-rotate affordance ---- */
+.chat-card { cursor: grab; }
+.chat-card .chat-messages { cursor: auto; }
+.chat-card a,
+.chat-card button,
+.chat-card select { cursor: pointer; }
+.chat-card input,
+.chat-card textarea { cursor: text; }
+.chat-card.is-dragging,
+.chat-card.is-dragging * {
+  cursor: grabbing !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+/* ---- Tiny interaction hint next to the attribution ---- */
+.twin-hint {
+  margin: 20px 4px 0;
+  font-size: .6rem;
+  letter-spacing: .04em;
+  color: #6f929b;
+}
+.twin-hint b { font-weight: 500; color: #9fc4cd; }
+.twin-credit { margin-top: 6px; }
+
+@media (max-width: 560px) {
+  .twin-credit { font-size: .72rem; margin-top: 4px; }
+  .twin-hint { font-size: .72rem; margin-top: 14px; }
+}
+
+/* =========================================================
+   4.0.1 — Digital Twin · module-wide typography scale-up
+   Everything below is scoped to #digital-twin so no other
+   section on the page is affected.
+   ========================================================= */
+
+/* intro: eyebrow + heading + lead paragraph */
+#digital-twin .eyebrow { font-size: .88rem; }
+#digital-twin .twin-intro h2 { font-size: clamp(2.75rem, 6.4vw, 5.4rem); }
+#digital-twin .twin-intro > p { font-size: 1.02rem; line-height: 1.7; }
+
+/* left sidebar */
+#digital-twin .sidebar-brand { font-size: .92rem; }
+#digital-twin .sidebar-copy strong { font-size: .98rem; }
+#digital-twin .sidebar-copy span { font-size: .82rem; }
+#digital-twin .sidebar-label { font-size: .7rem; }
+#digital-twin .sidebar-topics button { font-size: .88rem; }
+#digital-twin .sidebar-footer { font-size: .7rem; }
+
+/* chat header */
+#digital-twin .mini-avatar { font-size: 1rem; }
+#digital-twin .chat-header strong { font-size: .96rem; }
+#digital-twin .chat-header p { font-size: .78rem; }
+#digital-twin .clear-chat { font-size: 1.3rem; }
+
+/* message list */
+#digital-twin .message-name { font-size: .72rem; }
+#digital-twin .message p { font-size: 1.08rem; line-height: 1.72; }
+#digital-twin .suggestions button { font-size: .84rem; padding: 10px 14px; }
+
+/* composer */
+#digital-twin .chat-form input { font-size: .95rem; }
+#digital-twin .chat-form button { font-size: 1.3rem; }
+#digital-twin .chat-note { font-size: .68rem; }
+
+/* hint + attribution */
+#digital-twin .twin-hint { font-size: .74rem; }
+#digital-twin .twin-credit { font-size: .74rem; }
+
+/* a taller list keeps the roomier type from feeling cramped */
+#digital-twin .chat-messages { min-height: 470px; max-height: 545px; }
+#digital-twin .chat-shell { min-height: 650px; }
+
+@media (max-width: 800px) {
+  #digital-twin .chat-messages { min-height: 450px; max-height: 60vh; }
+}
+
+@media (max-width: 560px) {
+  #digital-twin .twin-intro h2 { font-size: 2.9rem; }
+  #digital-twin .message p { font-size: 1rem; }
+  #digital-twin .chat-note { font-size: .62rem; }
+  #digital-twin .twin-hint,
+  #digital-twin .twin-credit { font-size: .68rem; }
+}
+
+/* =========================================================
+   4.1.0 — About Me Portal · bottom bilingual instruction
+   Sits inside .portal-bottomline, so it fades out together
+   with the rest of the portal HUD once the correct access
+   point is clicked (#portalOverlay.about-in-space).
+   ========================================================= */
+
+#portalOverlay .portal-bottomline { justify-content: center; }
+
+#portalOverlay .portal-guide {
+  margin-inline: auto;
+  max-width: min(92vw, 760px);
+  font-size: .64rem;
+  line-height: 1.8;
+  letter-spacing: .1em;
+  text-transform: none;
+  text-align: center;
+  color: rgba(214, 250, 250, .62);
+  text-shadow: 0 4px 18px rgba(20, 90, 110, .35);
+  transition: opacity .4s ease;
+}
+
+@media (max-width: 560px) {
+  #portalOverlay .portal-guide {
+    font-size: .58rem;
+    letter-spacing: .06em;
+    line-height: 1.75;
+  }
+}
+
+/* keep the line clear of the floating "Mouse Trail" pill on small screens */
+@media (max-width: 700px) {
+  #portalOverlay .portal-bottomline { bottom: 70px; }
+  #portalOverlay .portal-guide { max-width: 84vw; }
+}
+
+/* =========================================================
+   4.2.0 — About Me cinematic cards · top-right index (n/4)
+   The ↗ arrow (span.card-arrow) was replaced by a position
+   label (span.card-index) sitting in the same corner.
+   Mirrors .card-number on the top-left, same 28px inset.
+   ========================================================= */
+
+.card-index {
+  position: absolute;
+  right: 28px;
+  top: 28px;
+  font-size: .65rem;
+  letter-spacing: .15em;
+  color: #6e8d96;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 4.2.1 — the top-left 01–04 numbers were removed, so the text block is now
+   the only in-flow child. Anchor it to the BOTTOM of the card, exactly where
+   it sat before (it used to be pushed down by the number above it). */
+.about-depth-card {
+  justify-content: flex-end;
+}
+
+/* inside the cinematic space the cards are dark, so the label goes white
+   (the .about-depth-card * rule already forces #fff !important) */
+.about-depth-card .card-index {
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  letter-spacing: .1em !important;
+}
+
+@media (max-width: 560px) {
+  .about-depth-card .card-index {
+    font-size: .9rem !important;
+  }
+}
+
+/* =========================================================
+   4.3.0 — Contact Me section (English only)
+   Last section on the page, sits between #feedback and the
+   footer. Same glass-panel language as .feedback-shell.
+   ========================================================= */
+
+.contact-section {
+  padding-bottom: 110px;
+}
+
+.contact-intro {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 40px;
+  align-items: end;
+  margin-bottom: 34px;
+}
+
+.contact-intro h2 {
+  margin: .35rem 0 0;
+  font-size: clamp(2.8rem, 6vw, 5.6rem);
+  line-height: .92;
+  letter-spacing: -.035em;
+}
+
+.contact-intro h2 span {
+  opacity: .45;
+}
+
+.contact-intro > p {
+  max-width: 520px;
+  justify-self: end;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.contact-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-item {
+  display: grid;
+  gap: 8px;
+  padding: 26px 28px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(255,255,255,.20), rgba(255,255,255,.08));
+  box-shadow: 0 24px 80px rgba(22, 87, 103, .08);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+
+.contact-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(80, 145, 170, .42);
+  box-shadow: 0 30px 90px rgba(22, 87, 103, .14);
+}
+
+.contact-label {
+  color: #64838d;
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.contact-value {
+  justify-self: start;
+  color: var(--text);
+  font-size: 1.25rem;
+  text-decoration: none;
+  word-break: break-all;
+  border-bottom: 1px solid transparent;
+  transition: color .25s ease, border-color .25s ease;
+}
+
+.contact-value:hover {
+  color: var(--deep);
+  border-bottom-color: currentColor;
+}
+
+@media (max-width: 800px) {
+  .contact-intro {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .contact-intro > p {
+    justify-self: start;
+  }
+  .contact-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .contact-section {
+    padding-bottom: 90px;
+  }
+  .contact-intro h2 {
+    font-size: 2.65rem;
+  }
+  .contact-item {
+    padding: 22px;
+    border-radius: 18px;
+  }
+  .contact-value {
+    font-size: 1.05rem;
+  }
+}
+
+/* =========================================================
+   4.4.0 / 4.4.1 / 4.4.2 / 4.5.0 / 4.6.0 — What I Like · module 01 (photo wall)
+   Mosaic: 4 columns; inside a column the tiles alternate
+   landscape (3:2) / portrait (2:3); neighbouring columns are
+   phase-shifted by one tile, so the seams never line up.
+
+   4.4.1 — the mosaic is a small block, not a full-bleed grid.
+   4.4.2 — shrunk again: max-width on .photo-wall is the single
+   size knob (460px ≈ 110px per tile, versus the old 1160px).
+   4.5.0 — これがすきです became the <h2>; the English name now
+   exists only in the 01 eyebrow, and all 16 slots are filled.
+   4.6.0 — sized back up a little (520px ≈ 125px per tile) and the
+   mosaic is now centred horizontally via margin-inline: auto.
+   ========================================================= */
+
+.likes-head {
+  margin-bottom: 28px;
+}
+
+.likes-head h2 {
+  margin: 0 0 .8rem;
+  font-size: clamp(2.8rem, 6vw, 5.6rem);
+  line-height: 1.02;
+  letter-spacing: .02em;   /* 4.5.0 — CJK title: a little air, not tight tracking */
+  font-weight: 500;
+}
+
+/* 4.5.0 — the hiragana moved up into the <h2>; this rule is now unused and
+   is kept only as a rollback lever (it was the subtitle style) */
+.likes-jp {
+  margin: 0 0 .4rem;
+  color: #52737e;
+  font-size: clamp(1.15rem, 2.2vw, 1.7rem);
+  letter-spacing: .14em;
+}
+
+.likes-romaji {
+  margin: 0;
+  color: #64838d;
+  font-size: .78rem;
+  letter-spacing: .2em;
+}
+
+.photo-wall {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  width: 100%;
+  max-width: 520px;          /* size knob: 4 columns inside this width */
+  margin-inline: auto;      /* 4.6.0 — centre the mosaic in the page */
+}
+
+.photo-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.photo-tile {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(22, 56, 68, .14);
+  border-radius: 8px;
+  /* placeholder tint — visible until a photo is dropped in */
+  background: linear-gradient(150deg, rgba(96, 138, 176, .42), rgba(96, 138, 176, .22));
+  cursor: zoom-in;
+}
+
+.photo-tile.is-landscape { aspect-ratio: 3 / 2; }
+.photo-tile.is-portrait { aspect-ratio: 2 / 3; }
+
+.photo-tile img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .55s cubic-bezier(.2, .7, .3, 1);
+}
+
+.photo-tile:hover img {
+  transform: scale(1.06);
+}
+
+/* slot still waiting for a photo — dashed, not clickable.
+   4.5.0 — all 16 slots are filled, so this rule is now unused; kept as a
+   rollback lever for the "photo still coming" state. */
+.photo-tile.is-empty {
+  display: grid;
+  place-items: center;
+  background: none;
+  border: 1px dashed rgba(22, 56, 68, .3);
+  cursor: default;
+}
+
+.photo-tile.is-empty::after {
+  content: "+";
+  color: rgba(22, 56, 68, .38);
+  font-size: 1.15rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+/* lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5vh 4vw;
+  background: rgba(8, 20, 26, .88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s ease, visibility .3s ease;
+}
+
+.lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 16px;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, .5);
+  transform: scale(.97);
+  transition: transform .3s ease;
+}
+
+.lightbox.is-open .lightbox-img {
+  transform: scale(1);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 22px;
+  right: 24px;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, .35);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .1);
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background .25s ease, transform .25s ease;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, .22);
+  transform: scale(1.06);
+}
+
+@media (max-width: 800px) {
+  .likes-head {
+    margin-bottom: 24px;
+  }
+  .photo-wall {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    max-width: 440px;
+  }
+  .photo-col {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 560px) {
+  .likes-head h2 {
+    font-size: 2.5rem;   /* 7 CJK glyphs stay on one line down to 320px */
+  }
+  .photo-wall {
+    gap: 5px;
+    max-width: 100%;
+  }
+  .photo-col {
+    gap: 5px;
+  }
+  .photo-tile {
+    border-radius: 7px;
+  }
+}
+
+/* =========================================================
+   4.8.0 — What I Like · module 01 · song word cloud
+   59 track titles under the photo wall, arranged as a loose
+   horizontal ELLIPSE. The titles are pre-shuffled into explicit
+   rows (.cloud-row) whose width targets follow an ellipse
+   profile — baked per row as --rw — so the block reads as a wide
+   oval instead of a rectangle, and the big tiers land centrally.
+   Rows, tiers and the --rw profile are generated by
+   .deepworks/tmp/build_wordcloud_ellipse.py (rerun it to
+   reshuffle). Tiers are in `em`, so the two media queries only
+   need to move .word-cloud's font-size.
+   ========================================================= */
+
+.word-cloud-wrap {
+  max-width: 1060px;        /* = widest row cap; the words span ~870px */
+  margin: 56px auto 0;      /* centred under the wall */
+}
+
+.cloud-label {
+  margin: 0 0 20px;
+  text-align: center;
+  font-size: .95rem;        /* was .62rem in 4.7.0 */
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #6c8c96;
+}
+
+.word-cloud {
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* rows stack, each centred on the axis */
+  gap: 6px;
+  margin: 0 auto;
+  font-size: 1.06rem;       /* master scale for all six tiers */
+  line-height: 1.2;
+}
+
+/* one ellipse row: shrinks to its content, never wider than its --rw */
+.cloud-row {
+  display: flex;
+  flex-wrap: wrap;          /* only actually wraps on narrow screens */
+  justify-content: center;
+  align-items: baseline;
+  gap: 6px 15px;            /* row gap / column gap */
+  max-width: var(--rw, 100%);
+}
+
+.cloud-word {
+  white-space: nowrap;
+  display: inline-block;
+  color: #5f8791;
+  line-height: 1.12;
+  letter-spacing: .01em;
+  transition: color .28s ease, transform .28s ease;
+}
+
+.cloud-word:hover {
+  color: #14424e;
+  transform: translateY(-2px);
+}
+
+/* six size tiers — em, so they inherit the master scale above.
+   colder/lighter = smaller, darker = bigger, for depth.
+   named cw1–cw6 so they can never collide with a future .w1 */
+.cw1 { font-size: .80em; color: #93acb4; }
+.cw2 { font-size: .92em; color: #88a5ae; }
+.cw3 { font-size: 1.05em; color: #7c9ca6; }
+.cw4 { font-size: 1.28em; color: #6b8f9a; }
+.cw5 { font-size: 1.60em; color: #527e8a; }
+.cw6 { font-size: 1.95em; color: #3a6875; font-weight: 500; }
+
+/* narrower viewport -> the caps are percentages, so the oval scales with
+   the column; the gaps tighten so rows need fewer wraps */
+@media (max-width: 1080px) {
+  .word-cloud-wrap {
+    max-width: 100%;
+  }
+  .cloud-row {
+    gap: 6px 12px;
+  }
+}
+
+@media (max-width: 800px) {
+  .word-cloud-wrap {
+    margin-top: 40px;
+  }
+  .cloud-label {
+    margin-bottom: 15px;
+    font-size: .82rem;
+    letter-spacing: .18em;
+  }
+  .word-cloud {
+    font-size: .92rem;
+  }
+  .cloud-row {
+    gap: 5px 11px;
+  }
+}
+
+@media (max-width: 560px) {
+  .word-cloud-wrap {
+    margin-top: 30px;
+  }
+  .cloud-label {
+    margin-bottom: 12px;
+    font-size: .68rem;
+    letter-spacing: .15em;
+  }
+  .word-cloud {
+    font-size: .78rem;
+  }
+  .cloud-row {
+    gap: 4px 9px;
+  }
+}

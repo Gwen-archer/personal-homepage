@@ -7,6 +7,16 @@
   <title>Elin — Personal Space</title>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+
+  <!-- 4.0.0 — Three.js import map for the Digital Twin brain background -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -26,13 +36,160 @@
       </div>
     </header>
 
-    <section class="section twin-section" id="digital-twin">
+    <!-- 4.4.x / 4.5.0 / 4.6.0 — What I Like · module 01, photo wall (compact, centred) -->
+    <section class="section likes-section" id="likes">
       <div class="container">
         <div class="twin-tagline" aria-label="Personal tagline">
           <h2>Curious by nature.<br><span>Building by doing.</span></h2>
         </div>
+
         <div class="section-top">
-          <p class="eyebrow">01 / DIGITAL TWIN</p>
+          <p class="eyebrow">01 / WHAT I LIKE</p>
+          <span class="section-line"></span>
+        </div>
+
+        <!-- 4.5.0 — the hiragana IS the main title; the English name survives
+             only once, in the eyebrow above -->
+        <div class="likes-head">
+          <h2>これがすきです</h2>
+          <p class="likes-romaji">kore ga suki desu</p>
+        </div>
+
+        <!-- photo wall: 4 columns, tiles alternate landscape (3:2) / portrait (2:3),
+             and neighbouring columns are phase-shifted by one tile.
+             the grid loads images/thumbs/* ; the lightbox loads the matching
+             images/* (full size, uncropped) through data-full -->
+        <div class="photo-wall" id="photoWall" aria-label="Photo wall">
+          <div class="photo-col">
+            <figure class="photo-tile is-landscape"><img src="images/thumbs/like-01.jpg" data-full="images/like-01.jpg" alt="" loading="lazy" decoding="async"></figure>
+            <figure class="photo-tile is-portrait"><img src="images/thumbs/like-02.jpg" data-full="images/like-02.jpg" alt="" loading="lazy" decoding="async"></figure>
+            <figure class="photo-tile is-landscape"><img src="images/thumbs/like-03.jpg" data-full="images/like-03.jpg" alt="" loading="lazy" decoding="async"></figure>
+            <figure class="photo-tile is-portrait"><img src="images/thumbs/like-04.jpg" data-full="images/like-04.jpg" alt="" loading="lazy" decoding="async"></figure>
+          </div>
+          <div class="photo-col">
+            <figure class="photo-tile is-portrait"><img src="images/thumbs/like-05.jpg" data-full="images/like-05.jpg" alt="" loading="lazy" decoding="async"></figure>
+            <figure class="photo-tile is-landscape"><img src="images/thumbs/like-06.jpg" data-full="images/like-06.jpg" alt="" loading="lazy" decoding="async"></figure>
+            <figure class="photo-tile is-portrait"><img src="images/thumbs/like-07.jpg" data-full="images/like-07.jpg" alt="" loading="lazy" decoding="async"></figure>
+            <figure class="photo-tile is-landscape"><img src="images/thumbs/like-08.jpg" data-full="images/like-08.jpg" alt="" loading="lazy" decoding="async"></figure>
+          </div>
+          <div class="photo-col">
+            <figure class="photo-tile is-landscape"><img src="images/thumbs/like-09.jpg" data-full="images/like-09.jpg" alt="" loading="lazy" decoding="async"></figure>
+            <figure class="photo-tile is-portrait"><img src="images/thumbs/like-10.jpg" data-full="images/like-10.jpg" alt="" loading="lazy" decoding="async"></figure>
+            <figure class="photo-tile is-landscape"><img src="images/thumbs/like-11.jpg" data-full="images/like-11.jpg" alt="" loading="lazy" decoding="async"></figure>
+            <figure class="photo-tile is-portrait"><img src="images/thumbs/like-12.jpg" data-full="images/like-12.jpg" alt="" loading="lazy" decoding="async"></figure>
+          </div>
+          <div class="photo-col">
+            <figure class="photo-tile is-portrait"><img src="images/thumbs/like-13.jpg" data-full="images/like-13.jpg" alt="" loading="lazy" decoding="async"></figure>
+            <figure class="photo-tile is-landscape"><img src="images/thumbs/like-14.jpg" data-full="images/like-14.jpg" alt="" loading="lazy" decoding="async"></figure>
+            <figure class="photo-tile is-portrait"><img src="images/thumbs/like-15.jpg" data-full="images/like-15.jpg" alt="" loading="lazy" decoding="async"></figure>
+            <!-- slot 16 — the 16th shot is portrait; it sits in this landscape
+                 frame on purpose (the set is 7 landscape + 9 portrait), and a
+                 click still opens the whole uncropped photo -->
+            <figure class="photo-tile is-landscape"><img src="images/thumbs/like-16.jpg" data-full="images/like-16.jpg" alt="" loading="lazy" decoding="async"></figure>
+          </div>
+        </div>
+
+        <!-- 4.8.0 — word cloud: the 59 tracks I keep on repeat.
+             SHUFFLED (seeded, so it is reproducible) and baked into 12 rows
+             whose widths follow an ellipse profile, so the block reads as a
+             loose horizontal oval with the big tiers landing large. Sizes are
+             six tiers generated by .deepworks/tmp/build_wordcloud_ellipse.py
+             — rerun that script to reshuffle / re-tier. -->
+        <div class="word-cloud-wrap">
+          <p class="cloud-label">On repeat</p>
+          <div class="word-cloud" aria-label="Songs I keep on repeat">
+            <div class="cloud-row" style="--rw:57.1%">
+              <span class="cloud-word cw1">Just The Two Of Us</span>
+              <span class="cloud-word cw3">美しき残酷な世界</span>
+              <span class="cloud-word cw6">懺悔録</span>
+            </div>
+            <div class="cloud-row" style="--rw:74.1%">
+              <span class="cloud-word cw3">Love Like Mine</span>
+              <span class="cloud-word cw6">響喜乱舞</span>
+              <span class="cloud-word cw4">Life Will Change</span>
+              <span class="cloud-word cw4">This Is Me</span>
+            </div>
+            <div class="cloud-row" style="--rw:85.3%">
+              <span class="cloud-word cw5">一番星</span>
+              <span class="cloud-word cw1">Ой цветёт калина</span>
+              <span class="cloud-word cw4">Beautiful Now</span>
+              <span class="cloud-word cw3">妄想感傷代償連盟</span>
+              <span class="cloud-word cw5">Teenage Dream</span>
+            </div>
+            <div class="cloud-row" style="--rw:92.8%">
+              <span class="cloud-word cw4">May It Be</span>
+              <span class="cloud-word cw5">Sofía</span>
+              <span class="cloud-word cw6">All of Me</span>
+              <span class="cloud-word cw3">カムパネルラ</span>
+              <span class="cloud-word cw3">Kung Malaya Lang Ako</span>
+              <span class="cloud-word cw1">僕が死のうと思ったのは</span>
+            </div>
+            <div class="cloud-row" style="--rw:97.5%">
+              <span class="cloud-word cw2">真夜中のドア~Stay With Me</span>
+              <span class="cloud-word cw5">HOUDINI</span>
+              <span class="cloud-word cw5">Je Ne Sais Pas</span>
+              <span class="cloud-word cw6">踊り子</span>
+              <span class="cloud-word cw2">Thank you for dears.</span>
+            </div>
+            <div class="cloud-row" style="--rw:99.7%">
+              <span class="cloud-word cw3">星と僕らと</span>
+              <span class="cloud-word cw3">Fly Me to the Moon</span>
+              <span class="cloud-word cw3">I Really Like You</span>
+              <span class="cloud-word cw1">Nothing's Gonna Change My Love For You</span>
+              <span class="cloud-word cw3">Chandelier</span>
+              <span class="cloud-word cw6">Stitches</span>
+            </div>
+            <div class="cloud-row" style="--rw:99.7%">
+              <span class="cloud-word cw3">WHERE IS MY HUSBAND!</span>
+              <span class="cloud-word cw4">From The Start</span>
+              <span class="cloud-word cw6">花篝り</span>
+              <span class="cloud-word cw1">나는 아픈 건 딱 질색이니까</span>
+              <span class="cloud-word cw6">Phoenix</span>
+            </div>
+            <div class="cloud-row" style="--rw:97.5%">
+              <span class="cloud-word cw3">Take A Chance With Me</span>
+              <span class="cloud-word cw3">Белая кошка</span>
+              <span class="cloud-word cw2">A Thousand Years</span>
+              <span class="cloud-word cw5">紅蓮の弓矢</span>
+              <span class="cloud-word cw3">EXEC_COSMOFLIPS</span>
+            </div>
+            <div class="cloud-row" style="--rw:92.8%">
+              <span class="cloud-word cw3">Stone Cold</span>
+              <span class="cloud-word cw4">辉く空の静寂には</span>
+              <span class="cloud-word cw2">La gloire à mes genoux</span>
+              <span class="cloud-word cw2">Into The New World</span>
+              <span class="cloud-word cw5">灰色と青</span>
+              <span class="cloud-word cw3">恋音と雨空</span>
+            </div>
+            <div class="cloud-row" style="--rw:85.3%">
+              <span class="cloud-word cw4">L'amour est bleu</span>
+              <span class="cloud-word cw4">いのちの名前</span>
+              <span class="cloud-word cw1">I Hate Myself for Loving You</span>
+              <span class="cloud-word cw4">ヤキモチ</span>
+              <span class="cloud-word cw2">Beautiful World</span>
+            </div>
+            <div class="cloud-row" style="--rw:74.1%">
+              <span class="cloud-word cw4">東京フラッシュ</span>
+              <span class="cloud-word cw6">Bad</span>
+              <span class="cloud-word cw6">光辉岁月</span>
+              <span class="cloud-word cw5">Piano Man</span>
+              <span class="cloud-word cw6">Lemon</span>
+            </div>
+            <div class="cloud-row" style="--rw:57.1%">
+              <span class="cloud-word cw4">Billie Jean</span>
+              <span class="cloud-word cw5">感電</span>
+              <span class="cloud-word cw2">Legends Never Die</span>
+              <span class="cloud-word cw3">Moves Like Jagger</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section twin-section" id="digital-twin">
+      <div class="container">
+        <div class="section-top">
+          <p class="eyebrow">02 / DIGITAL TWIN</p>
           <span class="section-line"></span>
         </div>
 
@@ -63,6 +220,8 @@
           </aside>
 
           <div class="chat-card">
+            <!-- 4.0.0 — Digital Twin 3D brain background (Three.js, rendered by script.js) -->
+            <div class="brain-bg" id="twinBrain" aria-hidden="true"></div>
             <div class="chat-header">
               <div class="chat-title">
                 <div class="mini-avatar">E</div>
@@ -91,6 +250,13 @@
             <p class="chat-note">Elin AI · Local knowledge base · Responses are simulated</p>
           </div>
         </div>
+
+        <!-- 4.0.0 — interaction hint -->
+        <!-- 4.0.0 — 3D model attribution (required by the original license / 需注明出处) -->
+        <p class="twin-credit">
+          <span>3D neural background — <a href="https://codepen.io/VoXelo/pen/xbgpJre" target="_blank" rel="noopener noreferrer">“Bioelectric consciousness engine” by VoXelo</a> on CodePen.</span>
+          <span class="twin-credit-note">All rights belong to the original author.</span>
+        </p>
       </div>
     </section>
   </main>
@@ -99,7 +265,7 @@
     <section class="section feedback-section" id="feedback">
       <div class="container">
         <div class="section-top">
-          <p class="eyebrow">02 / FEEDBACK</p>
+          <p class="eyebrow">03 / FEEDBACK</p>
           <span class="section-line"></span>
         </div>
 
@@ -166,6 +332,35 @@
       </div>
     </section>
 
+    <!-- 4.3.0 — Contact Me section (English) -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="section-top">
+          <p class="eyebrow">04 / CONTACT</p>
+          <span class="section-line"></span>
+        </div>
+
+        <div class="contact-intro">
+          <div>
+            <p class="system-label">OPEN CHANNEL</p>
+            <h2>Contact <span>Me.</span></h2>
+          </div>
+          <p>Open to questions, ideas, and collaboration — feel free to reach out.</p>
+        </div>
+
+        <ul class="contact-list">
+          <li class="contact-item">
+            <span class="contact-label">GitHub</span>
+            <a class="contact-value" href="https://github.com/Gwen-archer" target="_blank" rel="noopener noreferrer">https://github.com/Gwen-archer</a>
+          </li>
+          <li class="contact-item">
+            <span class="contact-label">E-mail</span>
+            <a class="contact-value" href="mailto:824342619@qq.com">824342619@qq.com</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
   <footer>
     <span>© 2026 ELIN</span>
     <span>BUILT WITH CURIOSITY / VIBE CODING</span>
@@ -201,40 +396,36 @@
             <div class="container">
               <div class="info-grid about-depth-stage">
           <article class="info-card about-depth-card">
-            <span class="card-number">01</span>
             <div>
               <p class="card-label">IDENTITY</p>
               <h3>Intelligent Medicine Explorer</h3>
               <p>A first-year student exploring intelligent medical engineering and brain-computer interfaces.</p>
             </div>
-            <span class="card-arrow">↗</span>
+            <span class="card-index">1/4</span>
           </article>
           <article class="info-card about-depth-card">
-            <span class="card-number">02</span>
             <div>
               <p class="card-label">CURRENTLY</p>
               <h3>Learning by doing</h3>
               <p>Currently working through Bandit while learning Linux and cybersecurity through practice.</p>
             </div>
-            <span class="card-arrow">↗</span>
+            <span class="card-index">2/4</span>
           </article>
           <article class="info-card about-depth-card">
-            <span class="card-number">03</span>
             <div>
               <p class="card-label">INTERESTS</p>
               <h3>Movies / Anime / Imagination</h3>
               <p>I enjoy movies and anime, and I love discovering the imagination behind great stories.</p>
             </div>
-            <span class="card-arrow">↗</span>
+            <span class="card-index">3/4</span>
           </article>
           <article class="info-card about-depth-card">
-            <span class="card-number">04</span>
             <div>
               <p class="card-label">SIGNATURE</p>
               <h3>Ring on hand</h3>
               <p>I often wear rings — a small detail that makes me easy to recognize.</p>
             </div>
-            <span class="card-arrow">↗</span>
+            <span class="card-index">4/4</span>
           </article>
               </div>
             </div>
@@ -243,12 +434,11 @@
         
         <div class="portal-bottomline">
           <span id="portalHint">Locate a stable signal.</span>
-          
+          <!-- 4.1.0 — bilingual instruction for the access-point hunt -->
+          <span class="portal-guide">点击发光的点，找到正确的那一个 · Click the glowing dots to find the right one.</span>
         </div>
       </div>
     </div>
-
-  <script src="script.js"></script>
 
   <div class="mouse-trail-control" aria-label="Mouse trail control">
     <span>Mouse Trail</span>
@@ -258,6 +448,21 @@
       <span class="sr-only">Toggle mouse trail</span>
     </button>
   </div>
+
+  <!-- 4.4.0 / 4.4.1 — photo wall lightbox (src is set on open) -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <img class="lightbox-img" alt="">
+  </div>
+
+  <!-- 4.6.0 — script moved to the very end of <body>.
+       It used to sit above the .mouse-trail-control and #lightbox markup, and
+       because the lightbox module in script.js is a plain IIFE (not wrapped in
+       DOMContentLoaded) it looked up #lightbox before that element existed,
+       got null, and returned early — so clicking a photo did nothing. -->
+  <script src="script.js"></script>
 
 </body>
 </html>
